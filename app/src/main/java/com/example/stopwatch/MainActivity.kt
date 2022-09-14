@@ -12,6 +12,7 @@ lateinit var clock: Chronometer
 lateinit var startstop: Button
 lateinit var reset: Button
  var checker = false
+var stopTime= 0L
 class MainActivity : AppCompatActivity() {
     companion object{
         //static constants
@@ -25,14 +26,21 @@ class MainActivity : AppCompatActivity() {
         wireWidgets()
         startstop.setOnClickListener {
             if(!checker){
+                if(stopTime == 0L){
+                    clock.base = SystemClock.elapsedRealtime()
+                    stopTime = SystemClock.elapsedRealtime()
+                }
                 clock.start()
                 startstop.text = "STOP"
                 startstop.setBackgroundColor(Color.RED)
+
+                clock.base = SystemClock.elapsedRealtime() - (stopTime - clock.base)
             }
             else{
                 clock.stop()
                 startstop.text = "START"
                 startstop.setBackgroundColor(Color.BLUE)
+                stopTime = SystemClock.elapsedRealtime()
             }
             checker = !checker
         }
