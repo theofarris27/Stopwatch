@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                 startstop.text = "START"
                 startstop.setBackgroundColor(Color.BLUE)
             }
-            checker != checker
+            checker = !checker
         }
         reset.setOnClickListener {
             if(checker){
