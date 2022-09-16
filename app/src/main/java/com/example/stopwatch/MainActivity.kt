@@ -7,6 +7,7 @@ import android.os.SystemClock
 import android.util.Log
 import android.widget.Button
 import android.widget.Chronometer
+import kotlinx.coroutines.NonCancellable.start
 
 lateinit var clock: Chronometer
 lateinit var startstop: Button
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Log.d(TAG, "onCreate: ")
         wireWidgets()
+        clock.start()
+      clock.stop()
         startstop.setOnClickListener {
             if(!checker){
                 if(stopTime == 0L){
